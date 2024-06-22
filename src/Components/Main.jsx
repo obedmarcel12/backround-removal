@@ -1125,7 +1125,7 @@ const Main = () => {
               <a href="/">Imprint</a>
             </span>
             <span className=" text-gray-200 font-sans font-medium text-sm">
-              © remove.bg, a Canva Austria GmbH brand
+              ©Copyright @ 2024 OBETECH
             </span>
           </div>
         </section>
