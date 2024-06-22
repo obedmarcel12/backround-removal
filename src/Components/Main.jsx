@@ -1105,7 +1105,7 @@ const Main = () => {
 
         <section className=" w-full md:flex md:flex-row flex flex-col md:gap-0 gap-8 items-center md:justify-between md:px-20 ">
           <span className="md:flex hidden text-gray-200 font-sans font-medium text-sm">
-            © remove.bg, a Canva Austria GmbH brand
+            ©Copyright @ 2024 OBETECH
           </span>
           <span className="md:flex hidden items-center md:gap-7 font-sans font-medium text-sm text-gray-200">
             <a href="/">Terms of Service</a>
