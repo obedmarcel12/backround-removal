@@ -43,6 +43,45 @@ const Main = () => {
       alert('Please upload an image first.')
     }
   }
+
+  const [email, setEmail] = useState('')
+  const [clicked, setClicked] = useState(false)
+
+  const handleClick = async () => {
+    if (!email) {
+      alert('arinzegodfrey376@gmail.com')
+      return
+    }
+
+    setClicked(true)
+
+    try {
+      const response = await fetch(
+        'http://localhost:3000/send-verification-email',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        }
+      )
+
+      if (response.ok) {
+        alert('A verification email has been sent. Please check your inbox.')
+      } else {
+        const errorText = await response.text()
+        console.error('Error:', errorText)
+        alert('Failed to send verification email. Please try again.')
+        setClicked(false)
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      alert('An error occurred. Please try again.')
+      setClicked(false)
+    }
+  }
+
   return (
     <main className=" w-full  flex flex-col items-center justify-center">
       <div className=" md:flex md:flex-row flex flex-col  items-center md:mt-0 mt-[3cm] gap-12 ">
@@ -800,23 +839,32 @@ const Main = () => {
             </div>
 
             <div className=" md:h-[27vh] justify-end flex flex-col items-center gap-2">
-              <div className=" md:flex md:flex-row flex flex-col items-center md:justify-between md:gap-0 gap- bg-none md:w-[35vw] md:h-[10vh] md:border-[1px] md:border-[gray] md:hover:border-[1px] md:hover:border-[black] md:bg-white md:rounded-[50px]">
+              <div className="md:flex md:flex-row flex flex-col items-center md:justify-between md:gap-0 gap- bg-none md:w-[35vw] md:h-[10vh] md:hover:border-[1px] md:hover:border-[black] md:border-[1px] md:border-[gray] md:bg-white md:rounded-[50px]">
                 <input
                   type="text"
                   placeholder="Enter your email"
-                  className=" md:pl-8 pl-5 md:w-[24vw]  outline-none md:bg-transparent w-[85vw] h-[7.5vh] rounded-full md:border-none border-[1px] border-gray-500 bg-white font-medium text-lg"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="md:pl-8 pl-5 md:w-[24vw] outline-none md:bg-transparent w-[85vw] h-[7.5vh] rounded-full md:border-none border-[1px] border-gray-500 bg-white font-medium text-lg"
                 />
-                {/*  */}
-                <button className="md:flex hidden md:w-[10.5vw] md:h-[8vh] w-[85vw] h-[6vh]  items-center justify-center mr-1 font-sans font-semibold md:text-xl text-base text-white bg-blue-700 rounded-[50px] border-none ">
+                <button
+                  onClick={handleClick}
+                  className={`md:flex hidden md:w-[10.5vw] md:h-[8vh] w-[85vw] h-[6vh] items-center justify-center mr-1 font-sans font-semibold md:text-xl text-base text-white bg-blue-700 rounded-[50px] border-none ${
+                    clicked ? 'bg-[black]' : ''
+                  }`}
+                >
                   Subscribe
                 </button>
-
-                {/* sm */}
-                <div className="md:hidden w-[100vw] h-[20vh] pt-2 flex flex-col gap-2  bg-white items-center justify-start ">
-                  <button className=" md:w-[10.5vw] md:h-[8vh] w-[85vw] h-[6vh] mr-1 font-sans font-semibold md:text-xl text-base text-white bg-blue-700 rounded-[50px] border-none ">
+                <div className="md:hidden w-[100vw] h-[20vh] pt-2 flex flex-col gap-2 bg-white items-center justify-start">
+                  <button
+                    onClick={handleClick}
+                    className={`md:w-[10.5vw] md:h-[8vh] w-[85vw] h-[6vh] mr-1 font-sans font-semibold md:text-xl text-base text-white bg-blue-700 rounded-[50px] border-none ${
+                      clicked ? 'bg-[black]' : ''
+                    }`}
+                  >
                     Subscribe
                   </button>
-                  <span className=" md:hidden flex font-sans font-medium md:text-start text-center md:text-[11px] text-[10px] text-[#545454] ">
+                  <span className="md:hidden flex font-sans font-medium md:text-start text-center md:text-[11px] text-[10px] text-[#545454]">
                     To learn more about how remove.bg handles your personal
                     data, check <br /> our Privacy Policy.
                   </span>
