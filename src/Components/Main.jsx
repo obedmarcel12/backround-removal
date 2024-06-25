@@ -754,10 +754,7 @@ const Main = () => {
       {/*  */}
 
       <section className=" w-full md:h-[130vh] h-[130vh] flex justify-center items-center">
-        <div
-          style={{ backgroundImage: 'url(src/assets/back-yellow.jpg)' }}
-          className=" bg-cover w-full md:h-[112vh] h-[134vh] md:pt-0 pt-[2.6cm] md:gap-14 gap-10 flex flex-col items-center justify-center "
-        >
+        <div className="bg-[#ffa600] w-full md:h-[112vh] h-[134vh] md:pt-0 pt-[2.6cm] md:gap-14 gap-10 flex flex-col items-center justify-center ">
           <section className="w-full flex flex-col items-center justify-center gap-6">
             <div className=" md:w-[72vw] w-[85vw] flex items-center justify-between font-sans ">
               <b className=" font-bold md:text-[2.6vw] text-4xl text-[#3e3d3d] ">
